@@ -1,5 +1,5 @@
-<template lang="html">
-  <div v-if = "renderQuote">
+<template>
+  <div>
     <div class="cat">
       <label >Category: </label>
       <span> {{myQuote.data.cat}}</span>
@@ -18,12 +18,9 @@ export default {
   props: {
     myQuote: {
       required: true
-    },
-    renderQuote: {
-      required: true
+    }
     }
   }
-}
 </script>
 
 <style scoped>

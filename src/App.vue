@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <h2>Random Quotes</h2>
-    <rndmQuote :myQuote = "quote"
-      :renderQuote = "renderQuote"
-    ></rndmQuote>
-    <button class="btn btn-outline-success" style="margin: 25px" @click = "generateQuote">Quote</button>
-    <button class="btn btn-primary" style="margin: 25px" v-if = "renderQuote" @click = "tweetMe"><i class="fab fa-twitter"> Tweet</i></button>
+    <div id="heading"></div>
+    <p class="display-1">Random Quotes</p>
+    <rndmQuote :myQuote = "quote"></rndmQuote>
+     <button class="btn btn-outline-success" style="margin: 25px" @click = "generateQuote">Quote</button>
+    <button class="btn btn-outline-primary" style="margin: 25px" @click = "tweetMe"><i class="fab fa-twitter"> Tweet</i></button>
     <div class="alert alert-primary" role="alert">
         Crafted By: <a href="https://github.com/abhay676" target="_blank">Abhay Goswami</a>
     </div>
@@ -23,18 +22,23 @@ export default {
   },
   data() {
     return {
-      quote: '',
-      renderQuote: false
+      quote: ''
     }
   },
-  methods: {
-    generateQuote() {
+  created() {
       axios
       .get('https://talaikis.com/api/quotes/random/')
       .then(response =>{
         this.quote = response;
         });
-        this.renderQuote = true;
+  },
+  methods: {
+    generateQuote() {
+       axios
+      .get('https://talaikis.com/api/quotes/random/')
+      .then(response =>{
+        this.quote = response;
+        });
     },
     tweetMe() {
       let query = this.quote.data.quote;
@@ -55,6 +59,6 @@ export default {
 }
 h2 {
   font-size: 55px;
+  font-weight: bold;
 }
-
 </style>
